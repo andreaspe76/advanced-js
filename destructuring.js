@@ -44,10 +44,10 @@ console.log(firstLanguage, thirdLanguage);
 
 // Using rest parameter syntax
 let fruits = ["apple", "orange", "banana", "peach", "cherry"];
-let [favorite, secondFavorite, ...others] = fruits;
+let [favorite, secondFavorite, ...rest] = fruits;
 console.log(favorite);
 console.log(secondFavorite);
-console.log(others);
+console.log(rest);
 
 let favoriteFoods = {
     brian: "pizza",
@@ -55,10 +55,10 @@ let favoriteFoods = {
     sarah: "vegetarian",
     andrea: "steak",
 };
-let { brian, anna, ...rest } = favoriteFoods;
+let { brian, anna, ...otherPersons } = favoriteFoods;
 console.log(brian);
 console.log(anna);
-console.log(rest);
+console.log(otherPersons);
 
 // Example
 /**
@@ -99,11 +99,12 @@ let students = [
 ];
 
 const makeList = (arr, student) => {
-    return arr.find(s => s.name === student).subjects;
+    for (let itm of arr) {
+        if (itm.name == student) {
+            return itm.subjects;
+        }
+    }
 };
 
-let [first, second, ...rest] = makeList(students, 'John');
-
-console.log(first);
-console.log(second);
-console.log(rest);
+let [first, second, ...others] = makeList(students, 'John');
+console.log(first, second, others);
